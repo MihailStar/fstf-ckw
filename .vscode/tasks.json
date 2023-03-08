@@ -1,0 +1,16 @@
+{
+  "tasks": [
+    {
+      "detail": "node-dev ./src/index.ts",
+      "group": {
+        "isDefault": true,
+        "kind": "build"
+      },
+      "label": "npm: dev",
+      "problemMatcher": [],
+      "script": "dev",
+      "type": "npm"
+    }
+  ],
+  "version": "2.0.0"
+}
