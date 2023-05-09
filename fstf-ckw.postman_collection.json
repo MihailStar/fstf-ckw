@@ -1,0 +1,338 @@
+{
+  "info": {
+    "_postman_id": "0e07836f-d6d3-4b4a-8b63-09a2c3221197",
+    "name": "fstf-ckw",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code', () => {\r",
+                  "  pm.expect(pm.response.code).to.be.match(/^(?:201|422)$/);\r",
+                  "\r",
+                  "  pm.collectionVariables.set('token', pm.response.json().data);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"login\": \"login\",\r\n  \"password\": \"password\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{SERVER_URL}}/user/register",
+              "host": ["{{SERVER_URL}}"],
+              "path": ["user", "register"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code', () => {\r",
+                  "  pm.expect(pm.response.code).to.be.match(/^(?:200|404)$/);\r",
+                  "\r",
+                  "  pm.collectionVariables.set('token', pm.response.json().data);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"login\": \"login\",\r\n  \"password\": \"password\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{SERVER_URL}}/user/login",
+              "host": ["{{SERVER_URL}}"],
+              "path": ["user", "login"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Info",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code', () => {\r",
+                  "  pm.expect(pm.response.code).to.be.match(/^(?:200|400)$/);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{SERVER_URL}}/user/info",
+              "host": ["{{SERVER_URL}}"],
+              "path": ["user", "info"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Item",
+      "item": [
+        {
+          "name": "Create",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code', () => {\r",
+                  "  pm.expect(pm.response.code).to.be.match(/^201$/);\r",
+                  "\r",
+                  "  pm.collectionVariables.set('created_item_id', pm.response.json().data.id);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"created name\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{SERVER_URL}}/item",
+              "host": ["{{SERVER_URL}}"],
+              "path": ["item"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Read all",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code', () => {\r",
+                  "  pm.expect(pm.response.code).to.be.match(/^200$/);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{SERVER_URL}}/item",
+              "host": ["{{SERVER_URL}}"],
+              "path": ["item"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Read",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code', () => {\r",
+                  "  pm.expect(pm.response.code).to.be.match(/^(?:200|404)$/);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{SERVER_URL}}/item/:itemId",
+              "host": ["{{SERVER_URL}}"],
+              "path": ["item", ":itemId"],
+              "variable": [
+                {
+                  "key": "itemId",
+                  "value": "{{created_item_id}}",
+                  "description": "required"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code', () => {\r",
+                  "  pm.expect(pm.response.code).to.be.match(/^(?:200|404)$/);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"updated name\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{SERVER_URL}}/item/:itemId",
+              "host": ["{{SERVER_URL}}"],
+              "path": ["item", ":itemId"],
+              "variable": [
+                {
+                  "key": "itemId",
+                  "value": "{{created_item_id}}",
+                  "description": "required"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code', () => {\r",
+                  "  pm.expect(pm.response.code).to.be.match(/^(?:200|404)$/);\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{SERVER_URL}}/item/:itemId",
+              "host": ["{{SERVER_URL}}"],
+              "path": ["item", ":itemId"],
+              "variable": [
+                {
+                  "key": "itemId",
+                  "value": "{{created_item_id}}",
+                  "description": "required"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "SERVER_PORT",
+      "value": "3000",
+      "type": "default"
+    },
+    {
+      "key": "SERVER_URL",
+      "value": "http://localhost:{{SERVER_PORT}}",
+      "type": "default"
+    },
+    {
+      "key": "created_item_id",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}

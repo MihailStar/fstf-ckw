@@ -1,0 +1,113 @@
+{
+  "env": {
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:node/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "airbnb-base",
+    "airbnb-typescript/base",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "project": "./tsconfig.eslint.json",
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint", "jsdoc"],
+  "root": true,
+  "rules": {
+    "@typescript-eslint/explicit-function-return-type": "error",
+    "@typescript-eslint/lines-between-class-members": [
+      "error",
+      "always",
+      { "exceptAfterSingleLine": true }
+    ],
+    "@typescript-eslint/member-ordering": [
+      "error",
+      {
+        "default": [
+          "signature",
+          "public-static-field",
+          "protected-static-field",
+          "private-static-field",
+          "public-decorated-field",
+          "protected-decorated-field",
+          "private-decorated-field",
+          "public-instance-field",
+          "protected-instance-field",
+          "private-instance-field",
+          "public-abstract-field",
+          "protected-abstract-field",
+          "private-abstract-field",
+          "public-field",
+          "protected-field",
+          "private-field",
+          "static-field",
+          "instance-field",
+          "abstract-field",
+          "decorated-field",
+          "field",
+          "public-constructor",
+          "protected-constructor",
+          "private-constructor",
+          "constructor",
+          "public-static-method",
+          "protected-static-method",
+          "private-static-method",
+          "public-decorated-method",
+          "protected-decorated-method",
+          "private-decorated-method",
+          "public-instance-method",
+          "protected-instance-method",
+          "private-instance-method",
+          "public-abstract-method",
+          "protected-abstract-method",
+          "private-abstract-method",
+          "public-method",
+          "protected-method",
+          "private-method",
+          "static-method",
+          "instance-method",
+          "abstract-method",
+          "decorated-method",
+          "method"
+        ]
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "jsdoc/check-access": "error",
+    "jsdoc/check-alignment": "error",
+    /* "jsdoc/check-examples": "error", */
+    "jsdoc/check-indentation": "error",
+    "jsdoc/check-line-alignment": "error",
+    "jsdoc/check-param-names": "error",
+    "jsdoc/check-property-names": "error",
+    "jsdoc/check-syntax": "error",
+    "jsdoc/check-tag-names": "error",
+    "jsdoc/check-types": "error",
+    "jsdoc/check-values": "error",
+    "jsdoc/no-types": "error",
+    "no-void": ["error", { "allowAsStatement": true }],
+    "node/no-process-exit": "error",
+    "node/no-unsupported-features/es-syntax": [
+      "error",
+      { "ignores": ["modules"] }
+    ],
+    "node/no-unsupported-features/node-builtins": [
+      "error",
+      {
+        "ignores": [],
+        "version": "^16.15.0"
+      }
+    ]
+  },
+  "settings": {
+    "node": {
+      "tryExtensions": [".mjs", ".js", ".json", ".ts", ".d.ts"]
+    }
+  }
+}
